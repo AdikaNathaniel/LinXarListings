@@ -2,8 +2,8 @@ import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Cart, CartDocument } from 'src/shared/schema/cart.schema';
-import { AddToCartDto } from 'src/products/dto/add-to-cart.dto';
-import { UpdateCartDto } from 'src/products/dto/update-cart.dto'; // Import your new DTO
+import { AddToCartDto } from 'src/property/dto/add-to-cart.dto';
+import { UpdateCartDto } from 'src/property/dto/update-cart.dto'; // Import your new DTO
 
 @Injectable()
 export class CartService {

@@ -6,7 +6,7 @@ import { CartModule } from './cart/cart.module'; // Import CartModule here
 import config from 'config';
 import { UsersModule } from './users/users.module';
 // import { ElasticsearchConfigModule } from './products/elastic.module';
-import { ProductsModule } from './products/products.module';
+import { PropertyModule } from './property/property.module';
 import { OrderModule } from './orders/orders.module';
 import { PaymentsModule } from './payments/payments.module';
 import { StripeModule } from './payments/stripe.module';
@@ -33,7 +33,7 @@ import { NotificationModule } from 'src/notification/notification.module'; // Ad
       maxPoolSize: 10,
     }),
     UsersModule,
-    ProductsModule,
+    PropertyModule,
     // ElasticsearchConfigModule,
     OrderModule,
     CartModule,

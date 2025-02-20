@@ -4,14 +4,14 @@ import {
   NestModule,
   RequestMethod,
 } from '@nestjs/common';
-import { ProductsService } from './products.service';
-import { ProductsController } from './products.controller';
+import { PropertyService } from './property.service'; // Updated to PropertyService
+import { PropertyController } from './property.controller'; // Updated to PropertyController
 import { MongooseModule } from '@nestjs/mongoose';
-import { Products, ProductSchema } from 'src/shared/schema/products';
+import { Property, PropertySchema } from 'src/shared/schema/property'; // Updated to Property
 import { Users, UserSchema } from 'src/shared/schema/users';
 import config from 'config';
 import { AuthMiddleware } from 'src/shared/middleware/auth';
-import { ProductRepository } from 'src/shared/repositories/product.respository';
+import { PropertyRepository } from 'src/shared/repositories/property.repository'; // Updated to PropertyRepository
 import { UserRepository } from 'src/shared/repositories/user.repository';
 import { APP_GUARD } from '@nestjs/core';
 import { RolesGuard } from 'src/shared/middleware/roles.guard';
@@ -21,10 +21,10 @@ import { OrdersRepository } from 'src/shared/repositories/order.repository';
 import Stripe from 'stripe';
 
 @Module({
-  controllers: [ProductsController],
+  controllers: [PropertyController], // Updated to PropertyController
   providers: [
-    ProductsService,
-    ProductRepository,
+    PropertyService, // Updated to PropertyService
+    PropertyRepository, // Updated to PropertyRepository
     UserRepository,
     OrdersRepository,
     { provide: APP_GUARD, useClass: RolesGuard },
@@ -38,26 +38,26 @@ import Stripe from 'stripe';
     },
   ],
   imports: [
-    MongooseModule.forFeature([{ name: Products.name, schema: ProductSchema }]),
+    MongooseModule.forFeature([{ name: Property.name, schema: PropertySchema }]), // Updated to Property
     MongooseModule.forFeature([{ name: Users.name, schema: UserSchema }]),
     MongooseModule.forFeature([{ name: License.name, schema: LicenseSchema }]),
     MongooseModule.forFeature([{ name: Orders.name, schema: OrderSchema }]),
   ],
 })
-export class ProductsModule implements NestModule {
+export class PropertyModule implements NestModule { // Updated to PropertyModule
   configure(consumer: MiddlewareConsumer) {
     consumer
       .apply(AuthMiddleware)
       .exclude(
         {
-          path: `${config.get('appPrefix')}/products`,
+          path: `${config.get('appPrefix')}/properties`, // Updated to properties
           method: RequestMethod.GET,
         },
         {
-          path: `${config.get('appPrefix')}/products/:id`,
+          path: `${config.get('appPrefix')}/properties/:id`, // Updated to properties
           method: RequestMethod.GET,
         },
       )
-      .forRoutes(ProductsController);
+      .forRoutes(PropertyController); // Updated to PropertyController
   }
 }

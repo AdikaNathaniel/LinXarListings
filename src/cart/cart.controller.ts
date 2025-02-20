@@ -1,7 +1,15 @@
-import { Controller, Post, Delete, Get, Body, Query, Put } from '@nestjs/common';
+import {
+  Controller,
+  Post,
+  Delete,
+  Get,
+  Body,
+  Query,
+  Put,
+} from '@nestjs/common';
 import { CartService } from './cart.service';
-import { AddToCartDto } from 'src/products/dto/add-to-cart.dto';
-import { UpdateCartDto } from 'src/products/dto/update-cart.dto'; // Import your new DTO
+import { AddToCartDto } from 'src/property/dto/add-to-cart.dto';
+import { UpdateCartDto } from 'src/property/dto/update-cart.dto'; // Import your new DTO
 
 @Controller('cart')
 export class CartController {
